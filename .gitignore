@@ -1,0 +1,6 @@
+appdata/
+data/
+media/
+downloads/
+
+.env
