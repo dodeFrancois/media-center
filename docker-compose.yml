@@ -7,7 +7,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ./config/radarr:/config
+      - ${CONFIG_DIR_ROOT}/radarr:/config
       - ${STORAGE_DIR}:/data
     ports:
       - 7878:7878
@@ -23,7 +23,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ./config/sonarr:/config
+      - ${CONFIG_DIR_ROOT}/sonarr:/config
       - ${STORAGE_DIR}:/data
     ports:
       - 8989:8989
@@ -39,7 +39,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ./config/prowlarr:/config
+      - ${CONFIG_DIR_ROOT}/prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
@@ -68,7 +68,7 @@ services:
       - VPN_PORT_FORWARDING_UP_COMMAND=/bin/sh -c 'wget -O- --retry-connrefused --post-data "json={\"listen_port\":{{PORTS}}}" http://127.0.0.1:8080/api/v2/app/setPreferences 2>&1'
       - SERVER_COUNTRIES=${SERVER_COUNTRIES}
     volumes:
-      - ./config/gluetun:/gluetun
+      - ${CONFIG_DIR_ROOT}/gluetun:/gluetun
     restart: unless-stopped
     networks:
       - vpn
@@ -85,7 +85,7 @@ services:
       - TZ=${TZ}
       - WEBUI_PORT=8080
     volumes:
-      - ./config/qbittorrent:/config
+      - ${CONFIG_DIR_ROOT}/qbittorrent:/config
       - ${STORAGE_DIR}:/data
     restart: unless-stopped
     network_mode: "service:gluetun"
@@ -101,7 +101,7 @@ services:
       - VERSION=docker
       - PLEX_CLAIM= #optional
     volumes:
-      - ./config/plex:/config
+      - ${CONFIG_DIR_ROOT}/plex:/config
       - ${STORAGE_DIR}/media:/media
     restart: unless-stopped
 
@@ -115,7 +115,7 @@ services:
     ports:
       - 5055:5055
     volumes:
-      - ./config/overseerr:/app/config
+      - ${CONFIG_DIR_ROOT}/overseerr:/app/config
     restart: unless-stopped
     networks:
       - vpn
