@@ -2,5 +2,7 @@ appdata/
 data/
 media/
 downloads/
+config/
 
+*.env
 .env
